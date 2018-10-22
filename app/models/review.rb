@@ -1,2 +1,4 @@
 class Review < ApplicationRecord
-end
+  belongs_to :user
+  belongs_to :city
+end ### End of Review Class

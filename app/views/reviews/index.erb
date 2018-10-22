@@ -1,0 +1,5 @@
+<h1>ALL OF THE REVIEWS</h1>
+
+<% @reviews.each do |review| %>
+  <%= link_to review.user, review_path(review) %><br>
+<% end %>

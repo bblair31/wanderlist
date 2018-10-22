@@ -1,0 +1,5 @@
+<h1>SHOW THIS REVIEW</h1>
+
+<h2>City: <%= link_to @review.city.name, city_path(@review.city) %></h2>
+<p>Rating: <%=  @review.rating %></p>
+<p>Content: <%=  @review.content %></p>
