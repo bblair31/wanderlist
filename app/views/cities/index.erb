@@ -1,5 +1,6 @@
 <h1>ALL OF THE CITIES</h1>
 
-<% @cities.each do |city| %>
+<%cities = @cities.order(:name) %>
+<% cities.each do |city| %>
   <%= link_to city.name, city_path(city) %><br>
 <% end %>

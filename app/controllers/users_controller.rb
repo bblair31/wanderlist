@@ -18,11 +18,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    #code
   end
 
   def update
-    #code
+    @user.update(user_params)
+    redirect_to user_path(@user)
   end
 
   def destroy

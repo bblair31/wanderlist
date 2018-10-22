@@ -14,7 +14,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    #code
+    @review = Review.create(review_params)
+    redirect_to review_path(@review)
   end
 
   def edit
