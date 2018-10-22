@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :reviews
   resources :countries, only: [:index, :show]
   resources :cities, only: [:index, :show]

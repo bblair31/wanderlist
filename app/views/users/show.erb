@@ -1,0 +1,9 @@
+<h1>User Show</h1>
+
+<%= @user.full_name %>
+
+
+<h3>User's Reviews</h3>
+<% @user.reviews.each do |rev| %>
+  <%= link_to rev.city, review_path(rev) %>
+<% end %>
