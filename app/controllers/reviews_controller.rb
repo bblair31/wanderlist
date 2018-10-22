@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :require_login
   before_action :find_review, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -37,5 +38,9 @@ private
 
   def find_review
     @review = Review.find(params[:id])
+  end
+
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
   end
 end ### End of ReviewsController
