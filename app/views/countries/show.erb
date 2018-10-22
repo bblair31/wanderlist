@@ -2,5 +2,7 @@
 
 <h2>Name: <%= @country.name %></h2>
 
-<p>LIST OF CITIES</p>
-- Link_to each city within this country
+<h3>LIST OF CITIES</h3>
+  <% @country.cities.each do |city| %>
+    <p><%= link_to city.name, city_path(city) %></p> 
+  <% end %>
