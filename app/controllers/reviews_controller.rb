@@ -11,6 +11,8 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @countries = Country.all
+    @cities = City.all
   end
 
   def create
@@ -19,7 +21,8 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    #code
+    @countries = Country.all
+    @cities = City.all
   end
 
   def update
