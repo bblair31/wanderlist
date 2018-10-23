@@ -69,4 +69,5 @@ gem 'city-state'
 # gem 'bcrypt' for has_secure_password in user model
 gem 'bcrypt'
 
-gem 'dynamic_selectable', git: 'https://github.com/mattantonelli/dynamic_selectable.git'
+gem 'rspec-rails'
+gem 'rails-controller-testing'
