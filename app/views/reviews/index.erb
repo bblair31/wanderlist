@@ -1,5 +1,6 @@
 <h1>ALL OF THE REVIEWS</h1>
 
 <% @reviews.each do |review| %>
-  <%= link_to review.user, review_path(review) %><br>
+  <%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating} - #{review.city.name}", review_path(review) %>
+  <p><%= review.content[0..50] %>...</p>
 <% end %>

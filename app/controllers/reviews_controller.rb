@@ -10,6 +10,10 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    if flash[:error]
+      params[:country] = flash[:country]
+    end
+
     if params[:country]
       @country = Country.find(params[:country])
       @cities = @country.cities.order(:name)
@@ -23,8 +27,13 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = session[:user_id]
-    @review.save
-    redirect_to review_path(@review)
+    if @review.save
+      redirect_to review_path(@review)
+    else
+      flash[:error] = @review.errors.full_messages
+      flash[:country] = @review.city.country.id
+      redirect_to new_review_path
+    end
   end
 
   def edit
@@ -35,7 +44,12 @@ class ReviewsController < ApplicationController
   def update
     @review.update(review_params)
 
-    redirect_to review_path(@review)
+    if @review.valid?
+      redirect_to review_path(@review)
+    else
+      flash[:error] = @review.errors.full_messages
+      redirect_to edit_review_path(@review)
+    end
   end
 
   def destroy

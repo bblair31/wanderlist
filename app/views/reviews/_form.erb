@@ -1,3 +1,13 @@
+<% if flash[:error] %>
+  <h3>There were errors with your request:</h3>
+
+  <ul>
+  <% flash[:error].each do |error|  %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
 <%= form_for @review do |f| %>
   <%= f.label :rating %>
   <%= f.number_field :rating %><br>
