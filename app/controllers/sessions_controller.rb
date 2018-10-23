@@ -18,4 +18,7 @@ class SessionsController < ApplicationController
     session.delete :user_id
   end
 
+  def welcome
+  end
+
 end ## End SessionsController
