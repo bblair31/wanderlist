@@ -4,4 +4,8 @@
 <p>Size/Population: <%= @city.size %></p>
 <p>Country: <%= link_to @city.country.name, country_path(@city.country)%></p>
 
-<p>LIST OF ALL REVIEWS</p>
+<h3>LIST OF ALL REVIEWS</h3>
+  <% @city.reviews.each do |review| %>
+    <%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating}", review_path(review) %>
+    <p><%= review.content[0..50] %>...</p>
+  <% end %>

@@ -5,5 +5,6 @@
 
 <h3>User's Reviews</h3>
 <% @user.reviews.each do |rev| %>
-  <%= link_to rev.city, review_path(rev) %>
+  <p><%= link_to "Review of #{rev.city.name} - Rating: #{rev.rating}", review_path(rev) %></p>
+  <p><%= rev.content[0..50] %>...</p>
 <% end %>
