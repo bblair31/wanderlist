@@ -28,12 +28,14 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @countries = Country.all
-    @cities = City.all
+    @country = @review.city.country
+    @cities = @country.cities.order(:name)
   end
 
   def update
-    #code
+    @review.update(review_params)
+
+    redirect_to review_path(@review)
   end
 
   def destroy

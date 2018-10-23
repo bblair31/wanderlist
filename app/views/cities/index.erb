@@ -1,6 +1,14 @@
 <h1>ALL OF THE CITIES</h1>
 
-<%cities = @cities.order(:name) %>
-<% cities.each do |city| %>
-  <%= link_to city.name, city_path(city) %><br>
+<% if params[:country] %>
+  <%cities = @cities.order(:name) %>
+  <% cities.each do |city| %>
+    <%= link_to city.name, city_path(city) %><br>
+  <% end %>
+<% else %>
+  <%= form_tag cities_path, method: :get do %>
+    <%= label_tag "First, select a Country" %>
+    <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name") %>
+    <%= submit_tag "Select this country" %>
+  <% end %>
 <% end %>

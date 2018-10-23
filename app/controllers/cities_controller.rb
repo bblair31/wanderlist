@@ -3,7 +3,13 @@ class CitiesController < ApplicationController
   before_action :find_city, only: [:show]
 
   def index
-    @cities = City.all
+    if params[:country]
+      @country = Country.find(params[:country])
+      @cities = @country.cities.order(:name)
+    else
+      countries = Country.all
+      @countries = countries.order(:name)
+    end
   end
 
   def show
