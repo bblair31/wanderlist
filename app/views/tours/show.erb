@@ -1,0 +1,6 @@
+<h1>SHOW THIS TOUR</h1>
+
+<h2>Name: <%= @tour.name %></h2>
+<p>Duration: <%= @tour.duration %></p>
+<p>Contact Info: <%= @tour.contact_info %></p>
+<p>Location: <%= link_to @tour.city.name, city_path(@tour.city) %></p>
