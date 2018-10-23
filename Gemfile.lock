@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/mattantonelli/dynamic_selectable.git
+  revision: 6df9658177f0296b77a7d8cf47d592af97745588
+  specs:
+    dynamic_selectable (1.1.1)
+      coffee-script (~> 2.3)
+      rails (>= 4.1, < 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -235,6 +243,7 @@ DEPENDENCIES
   chromedriver-helper
   city-state
   coffee-rails (~> 4.2)
+  dynamic_selectable!
   faker
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)

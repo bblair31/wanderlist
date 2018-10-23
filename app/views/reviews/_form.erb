@@ -1,14 +1,22 @@
-<%= form_for @review do |f| %>
-  <%= f.label :rating %>
-  <%= f.number_field :rating %><br>
-  <%= f.label :content %>
-  <%= f.text_area :content %><br>
-  <%= f.label :date_visited %>
-  <%= f.date_select :date_visited %><br>
-  <%= f.label :review_date %>
-  <%= f.text_field :review_date %><br>
-  <%= f.label :country %>
-  <%= f.collection_select(:country_id, @countries, :id, :name)%><br>
-  <%= f.collection_select(:city_id, @cities, :id, :name)%><br>
-  <%= f.submit %>
+
+<% if params[:country] %>
+  <%= form_for @review do |f| %>
+    <%= f.label :rating %>
+    <%= f.number_field :rating %><br>
+    <%= f.label :content %>
+    <%= f.text_area :content %><br>
+    <%= f.label :date_visited %>
+    <%= f.date_select :date_visited, start_year: 1995, order: [:month, :day, :year] %><br>
+
+    <%= f.label :city %>
+    <%= f.collection_select :city_id, @cities, :id, :name %>
+
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <%= form_tag new_review_path, method: :get do %>
+    <%= label_tag "First, select a Country" %>
+    <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name") %>
+    <%= submit_tag "Select this country" %>
+  <% end %>
 <% end %>

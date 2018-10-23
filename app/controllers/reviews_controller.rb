@@ -10,13 +10,20 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
-    @countries = Country.all
-    @cities = City.all
+    if params[:country]
+      @country = Country.find(params[:country])
+      @cities = @country.cities.order(:name)
+      @review = Review.new
+    else
+      countries = Country.all
+      @countries = countries.order(:name)
+    end
   end
 
   def create
-    @review = Review.create(review_params)
+    @review = Review.new(review_params)
+    @review.user_id = session[:user_id]
+    @review.save
     redirect_to review_path(@review)
   end
 
@@ -37,7 +44,7 @@ class ReviewsController < ApplicationController
 private
 
   def review_params
-    params.require(:review).permit(:rating, :content, :date_visited, :review_date, :user_id, :city_id)
+    params.require(:review).permit(:rating, :content, :date_visited, :user_id, :city_id)
   end
 
   def find_review
@@ -47,4 +54,7 @@ private
   def require_login
     return head(:forbidden) unless session.include? :user_id
   end
+
+
+
 end ### End of ReviewsController

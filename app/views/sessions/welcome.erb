@@ -1,5 +1,8 @@
 <h1>WELCOME TO WANDERLIST</h1>
 
+<% if flash[:logout] %>
+  <%= flash[:logout] %>
+<% end %>
 
 <%= button_to "LOGIN", login_path, method: :get %>
 <%= button_to "SIGN UP", new_user_path, method: :get %>
