@@ -55,6 +55,4 @@ private
     return head(:forbidden) unless session.include? :user_id
   end
 
-
-
 end ### End of ReviewsController

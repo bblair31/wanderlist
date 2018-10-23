@@ -1,2 +1,2 @@
 class ApplicationController < ActionController::Base
-end
+end ### End of ApplicationController
