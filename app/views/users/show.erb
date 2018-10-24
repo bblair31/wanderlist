@@ -1,5 +1,7 @@
 <h1><%= @user.full_name %>'s Profile</h1>
 
+<p><%= mail_to @user.email, "Contact #{@user.first_name}" %></p>
+
 <p>Total Reviews Written: <%= @user.user_review_count %></p>
 <p>My favorite destination is <%= @user.favorite_city[0] %> and I've visited it <%= @user.favorite_city[1] %> times. </p>
 <p>A destination I'd rather not visit again is <%= @user.least_favorite_city[0] %>.</p>
