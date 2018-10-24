@@ -8,7 +8,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= button_to "Log out", logout_path, method: :delete %>
+    <% if logged_in? %>
+      <%= link_to "Logout", logout_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} %>
+    <% else %>
+      <%= link_to "Login", login_path %>
+    <% end %>
 
   </head>
 

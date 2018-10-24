@@ -4,6 +4,8 @@
 <p>Size/Population: <%= @city.size %></p>
 <p>Country: <%= link_to @city.country.name, country_path(@city.country)%></p>
 <p>Total Reviews: <%= @city.city_review_count%></p>
+<p>Average Review Rating: <%= @city.average_rating %></p>
+<p>Tours Available: <%= @city.tour_count %></p>
 
 <h3>LIST OF ALL REVIEWS </h3>
   <% @city.reviews.each do |review| %>

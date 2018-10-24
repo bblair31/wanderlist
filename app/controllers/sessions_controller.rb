@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
+  skip_before_action :authorized, only: [:new, :create, :welcome]
 
   def new
   end
 
   def create
-    @user = User.find_by(email: params[:session][:email])
-    if @user && @user.authenticate(params[:session][:password])
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
@@ -21,11 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def welcome
-  end
-
-  def analytic
-    @top_cities = City.top_5
-    @top_countries = Country.top_5
   end
 
 end ## End SessionsController

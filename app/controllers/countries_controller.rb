@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  before_action :require_login
+  skip_before_action :authorized, only: [:index]
   before_action :find_country, only: [:show]
 
   def index
@@ -9,14 +9,16 @@ class CountriesController < ApplicationController
   def show
   end
 
+  def analytic
+    @top_cities = City.top_5
+    @top_countries = Country.top_5
+  end
+
 private
 
   def find_country
     @country = Country.find(params[:id])
   end
 
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
-  end
 
 end ### End of CountriesController

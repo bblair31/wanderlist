@@ -4,10 +4,13 @@
   <%= flash[:error] %>
 <% end %>
 
-<%= form_for :session, url: sessions_path do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Log in" %>
+<%= form_tag sessions_path do %>
+  <%= label_tag :email %>
+  <%= email_field_tag :email %><br>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %><br>
+  <%= submit_tag "Log in" %>
 <% end %>
+
+<h2>Not Registered yet?</h2>
+<%= button_to "Register", new_user_path, method: :get %>
