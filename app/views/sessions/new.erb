@@ -4,7 +4,7 @@
   <%= flash[:error] %>
 <% end %>
 
-<%= form_for :session, url: login_path do |f| %>
+<%= form_for :session, url: sessions_path do |f| %>
   <%= f.label :email %>
   <%= f.email_field :email %><br>
   <%= f.label :password %>
