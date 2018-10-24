@@ -1,7 +1,16 @@
-<h1>User Show</h1>
+<h1><%= @user.full_name %>'s Profile</h1>
 
-<%= @user.full_name %>
+<p>Total Reviews Written: <%= @user.user_review_count %></p>
+<p>My favorite destination is <%= @user.favorite_city[0] %> and I've visited it <%= @user.favorite_city[1] %> times. </p>
+<p>A destination I'd rather not visit again is <%= @user.least_favorite_city[0] %>.</p>
 
+<h3>Cities Visited</h3>
+<ul>
+  <% @user.cities_reviewed.uniq.each do |city| %>
+    <li><%=link_to city.name, city_path(city) %></li>
+  <% end %>
+
+</ul>
 
 <h3>User's Reviews</h3>
 <% @user.reviews.each do |rev| %>

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-describe Tour do
-
+RSpec.describe Tour, type: :model do
   before do
     @country = Country.create(name: "United States")
     @city = City.create(name: "New York", size: "large", country_id: @country.id, state_code: "NY")

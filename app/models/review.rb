@@ -10,5 +10,6 @@ class Review < ApplicationRecord
     if review_date < date_visited
       errors.add(:date_visited, "is in the future. Can't review if you haven't visited yet!")
     end
-  end
+  end #end rev_date_after_visit method
+
 end ### End of Review Class

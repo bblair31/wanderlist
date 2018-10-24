@@ -23,4 +23,9 @@ class SessionsController < ApplicationController
   def welcome
   end
 
+  def analytic
+    @top_cities = City.top_5
+    @top_countries = Country.top_5
+  end
+
 end ## End SessionsController

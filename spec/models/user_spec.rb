@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
 
   let(:valid_attributes) do
     {
-      first_name: "Asaf",
+      first_name: "Asafaa",
       last_name: "Daevidoov",
       email: "asafD12345@hotmail.com",
       password: "password123",

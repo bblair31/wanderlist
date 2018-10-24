@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Country do
+RSpec.describe Country, type: :model do
   let(:attributes) do
     {
       name: "France",

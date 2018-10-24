@@ -1,0 +1,15 @@
+<h1>ANALYTICS PAGE</h1>
+
+<h2>Top 5 Reviewed Countries</h2>
+<ol>
+  <% @top_countries.each do |country| %>
+    <li><%= country[0] %> - Reviews: <%= country[1] %></li>
+  <% end %>
+</ol>
+
+<h2>Top 5 Reviewed Cities</h2>
+<ol>
+  <% @top_cities.each do |city| %>
+    <li><%= city[0] %> - Reviews: <%= city[1] %></li>
+  <% end %>
+</ol>

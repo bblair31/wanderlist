@@ -2,6 +2,8 @@
 
 <h2>Name: <%= @country.name %></h2>
 
+<p>Total Reviews: <%= @country.country_review_count %></p>
+
 <h3>LIST OF CITIES</h3>
   <%cities = @country.cities.order(:name)  %>
   <% cities.each do |city| %>

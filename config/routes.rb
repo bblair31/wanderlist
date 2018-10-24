@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create', as: "sessions"
   delete '/logout',  to: 'sessions#destroy'
   get '/', to: 'sessions#welcome', as: 'welcome'
+  get '/analytic', to: 'sessions#analytic', as: 'analytic'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

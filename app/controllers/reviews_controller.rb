@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
       countries = Country.all
       @countries = countries.order(:name)
     end
-  end
+  end #end new method
 
   def create
     @review = Review.new(review_params)
@@ -40,7 +40,7 @@ class ReviewsController < ApplicationController
       flash[:review] = params[:review]
       redirect_to new_review_path
     end
-  end
+  end #end create method
 
   def edit
     @country = @review.city.country
@@ -49,14 +49,13 @@ class ReviewsController < ApplicationController
 
   def update
     @review.update(review_params)
-
     if @review.valid?
       redirect_to review_path(@review)
     else
       flash[:error] = @review.errors.full_messages
       redirect_to edit_review_path(@review)
     end
-  end
+  end #end update method
 
   def destroy
     @review.destroy
