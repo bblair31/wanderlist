@@ -12,12 +12,17 @@ class ReviewsController < ApplicationController
   def new
     if flash[:error]
       params[:country] = flash[:country]
+      params[:review] = flash[:review]
     end
 
-    if params[:country]
+    if params[:country] && params[:review] == nil
       @country = Country.find(params[:country])
       @cities = @country.cities.order(:name)
       @review = Review.new
+    elsif params[:country] && params[:review]
+      @country = Country.find(params[:country])
+      @cities = @country.cities.order(:name)
+      @review = Review.new(review_params)
     else
       countries = Country.all
       @countries = countries.order(:name)
@@ -32,6 +37,7 @@ class ReviewsController < ApplicationController
     else
       flash[:error] = @review.errors.full_messages
       flash[:country] = @review.city.country.id
+      flash[:review] = params[:review]
       redirect_to new_review_path
     end
   end
@@ -70,5 +76,6 @@ private
   def require_login
     return head(:forbidden) unless session.include? :user_id
   end
+
 
 end ### End of ReviewsController
