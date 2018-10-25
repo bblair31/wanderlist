@@ -1,3 +1,5 @@
+<h2>Your Conversation with <%= @conversation.recipient(current_user).full_name %></h2>
+
 <ul>
   <% @messages.each do |message| %>
     <% if message.body %>
