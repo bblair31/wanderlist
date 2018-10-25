@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1><%= @user.full_name %></h1>
-    <p><%=image_tag(@user.my_photo_url)%></p>
+    <p><%=image_tag(@user.my_photo_url, class: 'rounded-circle')%></p>
 
     <% if @user.first_photo.user_id == current_user.id %>
       <%= button_to "Edit My Profile Picture", edit_photo_path(@user.first_photo.id), method: :get %>
