@@ -8,13 +8,12 @@
       <%= error %></br>
       <% end %>
     <% end %>
-  </div>
+  </div><br>
 
   <%= form_for @review do |f| %>
     <h4>Select from <%= @country.name %>'s Cities:</h4>
     <p><%= f.label :city %>
     <%= f.collection_select :city_id, @cities, :id, :name %></p>
-
     <p><%= f.label :rating %> (1-5)
     <%= f.number_field :rating %></p>
     <p><%= f.label :content %>
