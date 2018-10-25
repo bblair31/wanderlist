@@ -1,11 +1,21 @@
-<h1>SHOW THIS COUNTRY</h1>
+<div class="jumbotron world_map">
+  <div class="container-fluid text-center">
+    <h1><%= @country.name %></h1>
+    <p>Total Reviews: <%= @country.country_review_count %></p>
+  </div>
+</div>
 
-<h2>Name: <%= @country.name %></h2>
+<div class="container-fluid bg-3 text-center">
+  <h3>LIST OF CITIES</h3>
+  <div class="row">
 
-<p>Total Reviews: <%= @country.country_review_count %></p>
+    <%cities = @country.cities.order(:name)  %>
+    <% cities.each do |city| %>
+    <div class="col-sm-3">
+      <p><%= link_to city.name, city_path(city) %></p>
+    </div>
+    <% end %>
 
-<h3>LIST OF CITIES</h3>
-  <%cities = @country.cities.order(:name)  %>
-  <% cities.each do |city| %>
-    <p><%= link_to city.name, city_path(city) %></p>
-  <% end %>
+
+  </div>
+</div>
