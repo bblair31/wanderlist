@@ -1,11 +1,26 @@
-<h1>SHOW THIS REVIEW</h1>
+<div class="jumbotron traveler">
+  <div class="container-fluid text-center">
+    <h1>Review of <%= link_to @review.city.name, city_path(@review.city) %></h1>
 
-<h2>City: <%= link_to @review.city.name, city_path(@review.city) %></h2>
-<p>Rating: <%=  @review.rating %></p>
-<p>Content: <%=  @review.content %></p>
-<p>Reviewer: <%= link_to @review.user.full_name, user_path(@review.user) %></p>
+  </div>
+</div>
 
-<% if @review.user == current_user %>
-  <%= button_to "Edit Review", edit_review_path(@review), method: :get %>
-  <%= button_to "Delete Review", review_path(@review), method: :delete, data: {confirm: "Are you sure you want to delete this review?"} %>
-<% end %>
+<div class="container-fluid bg-3 text-center">
+  <div class="container button_padding">
+    <div class="row">
+      <% if @review.user == current_user %>
+      <div class="col-sm">
+        <%= button_to "Edit Review", edit_review_path(@review), method: :get %>
+      </div>
+      <div class="col-sm">
+        <%= button_to "Delete Review", review_path(@review), method: :delete, data: {confirm: "Are you sure you want to delete this review?"} %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <p>Date Visited: <%= @review.date_visited %></p>
+  <p>Rating: <%=  @review.rating %></p>
+  <p>Content: <%=  @review.content %></p>
+  <p>Reviewer: <%= link_to @review.user.full_name, user_path(@review.user) %></p>
+</div>
