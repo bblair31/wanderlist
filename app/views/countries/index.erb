@@ -1,6 +1,11 @@
-<h1>ALL OF THE COUNTRIES</h1>
+<div class="container-fluid bg-3 text-center">
+  <h1>All Countries - <%= @countries.count %> Total</h1><br>
+  <div class="row">
 
-<% countries = @countries.order(:name) %>
-<% countries.each do |country| %>
-  <%= link_to country.name, country_path(country) %><br>
-<% end %>
+  <% countries = @countries.order(:name) %>
+  <% countries.each do |country| %>
+      <div class="col-sm-3"><p><%= link_to country.name, country_path(country) %></p></div>
+  <% end %>
+
+  </div>
+</div>

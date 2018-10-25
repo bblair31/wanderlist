@@ -1,6 +1,10 @@
-<h1>ALL OF THE REVIEWS</h1>
+<div class="container-fluid bg-3 text-center">
+  <h1>All Reviews - <%= @reviews.count %> Total</h1>
+  <div class="row">
 
-<% @reviews.each do |review| %>
-  <%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating} - #{review.city.name}", review_path(review) %>
-  <p><%= review.content[0..50] %>...</p>
-<% end %>
+    <% @reviews.each do |review| %>
+      <div class="col-sm-6"><p><%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating} - #{review.city.name}", review_path(review) %> <%= review.content[0..75] %>...</p></div>
+    <% end %>
+
+  </div>
+</div>

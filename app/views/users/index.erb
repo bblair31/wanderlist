@@ -1,11 +1,16 @@
-<h1>ALL USERS</h1>
+<div class="container-fluid bg-3 text-center">
+  <h1>Wanderlist Users - <%= @users.count %> Total</h1><br>
 
-<%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:user_name, "Search by User's Name:") %>
-  <%= text_field_tag(:user_name) %>
-  <%= submit_tag("Search") %>
-<% end %>
+    <%= form_tag("/search", method: "get") do %>
+      <%= label_tag(:user_name, "Search by User's Name:") %>
+      <%= text_field_tag(:user_name) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-sm-3"><p><%= link_to user.full_name, user_path(user) %></p></div>
+    <% end %>
 
-<% @users.each do |user| %>
-  <p><%= link_to user.full_name, user_path(user) %></p>
-<% end %>
+
+  </div>
+</div>

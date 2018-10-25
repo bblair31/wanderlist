@@ -1,14 +1,20 @@
-<h1>ALL OF THE CITIES</h1>
+<div class="container-fluid bg-3 text-center">
 
-<% if params[:country] %>
-  <%cities = @cities.order(:name) %>
-  <% cities.each do |city| %>
-    <%= link_to city.name, city_path(city) %><br>
+  <% if params[:country] %>
+    <h1>All Cities in <%=@country.name%></h1><br>
+    <div class="row">
+      <%cities = @cities.order(:name) %>
+      <% cities.each do |city| %>
+        <div class="col-sm-3"><p><%=link_to city.name, city_path(city)%><br></div>
+      <% end %>
+    <% else %>
+      <%= form_tag cities_path, method: :get do %>
+        <%= label_tag "First, select a Country" %>
+        <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name") %>
+        <%= submit_tag "Select this country" %>
+      <% end %>
   <% end %>
-<% else %>
-  <%= form_tag cities_path, method: :get do %>
-    <%= label_tag "First, select a Country" %>
-    <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name") %>
-    <%= submit_tag "Select this country" %>
-  <% end %>
-<% end %>
+
+
+  </div>
+</div><br>
