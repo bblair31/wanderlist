@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :cities, through: :reviews
   has_many :tours, through: :cities
   has_many :photos, dependent: :destroy
+  has_many :conversations, dependent: :destroy
   has_secure_password
   validates :password, length: { minimum: 8 }, allow_nil: false
   validates :email, presence: true, uniqueness: true
@@ -46,7 +47,7 @@ class User < ApplicationRecord
     my_photos = self.photos.map do |photo|
       photo.url
     end
-    my_photos.first.to_s
+    my_photos.first
   end
 
   def first_photo

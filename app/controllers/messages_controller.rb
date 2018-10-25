@@ -2,11 +2,15 @@ class MessagesController < ApplicationController
   before_action :find_conversation
 
   def index
-    @messages = @conversation.messages
+    if @conversation.receiver_id == current_user.id || @conversation.sender_id == current_user.id
+      @messages = @conversation.messages
 
-    @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+      @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
 
-    @message = @conversation.messages.new
+      @message = @conversation.messages.new
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def create

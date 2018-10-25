@@ -59,11 +59,16 @@ days = (1..28).to_a
 Photo.delete_all
 counter = 1
 User.all.count.times do
-  user = User.find(counter)
-  photo_num = counter + 100
-  url = 'https://picsum.photos/100/100/?image='+photo_num.to_s
-  Photo.create(url: url, user_id: user.id )
-  counter +=1
+  user = User.find_by(id: counter)
+
+  if user != nil
+    photo_num = counter + 106
+    url = 'https://picsum.photos/100/100/?image='+photo_num.to_s
+    Photo.create(url: url, user_id: user.id )
+    counter +=1
+  else
+    counter +=1
+  end
 end
 
 puts "DONE SEEDING"

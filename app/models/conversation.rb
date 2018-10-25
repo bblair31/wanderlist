@@ -13,6 +13,7 @@ class Conversation < ApplicationRecord
   #   where("(conversations.sender_id = ? AND conversations.receiver_id = ?) OR (conversations.receiver_id = ? AND conversations.sender_id = ?)", sender_id, receiver_id, sender_id, receiver_id)
   #   end
 
+  ### Determines if current_user is sender or receiver
   def recipient(current_user)
    if self.sender_id == current_user.id
      self.receiver
