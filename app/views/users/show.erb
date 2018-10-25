@@ -5,7 +5,9 @@
   <%= button_to "Edit My Profile Picture", edit_photo_path(@user.first_photo.id), method: :get %>
 <% end %>
 
-<p><%= button_to "WanderMessage #{@user.first_name}", conversations_path, method: :get %></p>
+<% if @user != current_user %>
+  <p><%= button_to "WanderMessage #{@user.first_name}", conversations_path, method: :get %></p>
+<% end %>
 
 <% if @user.reviews.size != 0 %>
   <p>Total Reviews Written: <%= @user.user_review_count %></p>
