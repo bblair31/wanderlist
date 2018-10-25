@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1><%= @user.full_name %></h1>
-    <p><%=image_tag(@user.my_photo_url, class: 'rounded-circle')%></p>
+    <p><%=image_tag(@user.my_photo_url, class: 'rounded-circle', :size => "150x150")%></p>
       <div class="container user_show_buttons">
         <div class="row">
           <div class="col-sm">
