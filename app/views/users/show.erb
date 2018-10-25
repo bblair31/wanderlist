@@ -1,5 +1,6 @@
 <h1><%= @user.full_name %>'s Profile</h1>
 
+<%=image_tag(@user.my_photo_url)%>
 <p><%= mail_to @user.email, "Contact #{@user.first_name}" %></p>
 
 <% if @user.reviews.size != 0 %>

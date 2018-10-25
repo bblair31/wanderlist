@@ -3,9 +3,9 @@ class ConversationsController < ApplicationController
   def index
    @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
    @users = User.where.not(id: current_user.id)
- end
+  end
 
- def create
+  def create
     if Conversation.between(params[:sender_id], params[:receiver_id]).present?
       @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).first
     else
@@ -16,8 +16,8 @@ class ConversationsController < ApplicationController
 
 private
 
-    def conversation_params
-      params.permit(:sender_id, :receiver_id)
-    end
+  def conversation_params
+    params.permit(:sender_id, :receiver_id)
+  end
 
 end ### End of ConversationsController

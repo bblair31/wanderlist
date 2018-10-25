@@ -1,13 +1,17 @@
 class Conversation < ApplicationRecord
   belongs_to :sender, class_name: "User", foreign_key: "sender_id"
   belongs_to :receiver, class_name: "User", foreign_key: "receiver_id"
+  ### lets ActiveRecord know sender_id and receiver_id are both ids from the user table
   has_many :messages, dependent: :destroy
-
   validates :sender_id, uniqueness: { scope: :receiver_id}
 
-  scope :between, -> (sender_id,receiver_id) do
+  def self.between(sender_id, receiver_id)
     where("(conversations.sender_id = ? AND conversations.receiver_id = ?) OR (conversations.receiver_id = ? AND conversations.sender_id = ?)", sender_id, receiver_id, sender_id, receiver_id)
-    end
+  end
+
+  # scope :between, -> (sender_id,receiver_id) do
+  #   where("(conversations.sender_id = ? AND conversations.receiver_id = ?) OR (conversations.receiver_id = ? AND conversations.sender_id = ?)", sender_id, receiver_id, sender_id, receiver_id)
+  #   end
 
   def recipient(current_user)
    if self.sender_id == current_user.id

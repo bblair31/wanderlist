@@ -4,7 +4,7 @@
   <% @messages.each do |message| %>
     <% if message.body %>
       <li>
-        <h4><%= message.user.full_name %> - <%= message.message_time %></h4>
+        <h4><%=image_tag(message.user.my_photo_url, :size => "20x20") %> <%= message.user.full_name %> - <%= message.message_time %></h4>
         <p><%= message.body %></p>
       </li>
     <% end %>

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :cities, through: :reviews
   has_many :tours, through: :cities
+  has_many :photos, dependent: :destroy
   has_secure_password
   validates :password, length: { minimum: 8 }, allow_nil: false
   validates :email, presence: true, uniqueness: true
@@ -39,6 +40,13 @@ class User < ApplicationRecord
   def least_favorite_city
     # should return the city key with the lowest value-review#s
     self.sort_num_of_reviews_per_city[0]
+  end
+
+  def my_photo_url
+    my_photos = self.photos.map do |photo|
+      photo.url
+    end
+    my_photos.first.to_s
   end
 
 end ### End of User Class
