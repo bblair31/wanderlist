@@ -1,23 +1,27 @@
+<div class="form-group has-danger">
+
 <% if flash[:error] %>
-  <h3>There were errors with your request:</h3>
-
-  <ul>
-  <% flash[:error].each do |error|  %>
-      <li><%= error %></li>
+  <label class="form-control-label" for="inputDanger1"></label>
+  <input type="text" value="There were errors with your request:" class="form-control is-invalid alert-danger text-center" id="inputInvalid">
+  <div class="invalid-feedback">
+    <% flash[:error].each do |error|  %>
+      <%= error %></br>
+      <% end %>
     <% end %>
-  </ul>
+  </div>
+
+  <%= form_for @review do |f| %>
+    <h4>Select from <%= @country.name %>'s Cities:</h4>
+    <p><%= f.label :city %>
+    <%= f.collection_select :city_id, @cities, :id, :name %></p>
+
+    <p><%= f.label :rating %> (1-5)
+    <%= f.number_field :rating %></p>
+    <p><%= f.label :content %>
+    <%= f.text_area :content %></p>
+    <p><%= f.label :date_visited %>
+    <%= f.date_select :date_visited, start_year: 1995, order: [:month, :day, :year] %></p>
+
+    <%= f.submit class: "btn btn-info" %>
   <% end %>
-
-<%= form_for @review do |f| %>
-  <%= f.label :rating %>
-  <%= f.number_field :rating %><br>
-  <%= f.label :content %>
-  <%= f.text_area :content %><br>
-  <%= f.label :date_visited %>
-  <%= f.date_select :date_visited, start_year: 1995, order: [:month, :day, :year] %><br>
-  <h2><%= @country.name %>'s Cities:</h2>
-  <%= f.label :city %>
-  <%= f.collection_select :city_id, @cities, :id, :name %>
-
-  <%= f.submit %>
-<% end %>
+</div>

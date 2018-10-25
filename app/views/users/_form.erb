@@ -1,12 +1,17 @@
-<% if flash[:error] %>
-  <h3>There were errors with your request:</h3>
+<div class="form-group has-danger">
 
-  <ul>
-  <% flash[:error].each do |error|  %>
-      <li><%= error %></li>
+<% if flash[:error] %>
+  <label class="form-control-label" for="inputDanger1"></label>
+  <input type="text" value="There were errors with your request:" class="form-control is-invalid alert-danger" id="inputInvalid">
+  <div class="invalid-feedback">
+    <ul>
+    <% flash[:error].each do |error|  %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-  <% end %>
+  </div>
+</div>
 
 <%= form_for @user do |f| %>
   <%= f.label :email %>

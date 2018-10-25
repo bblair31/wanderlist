@@ -1,10 +1,14 @@
 <div class="container-fluid bg-3 text-center">
-  <h1>All Reviews - <%= @reviews.count %> Total</h1>
+  <h1>All Reviews - <%= @reviews.count %> Total</h1><br>
   <div class="row">
 
-    <% @reviews.each do |review| %>
-      <div class="col-sm-6"><p><%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating} - #{review.city.name}", review_path(review) %> <%= review.content[0..75] %>...</p></div>
-    <% end %>
+      <% @reviews.each do |review| %>
+        <div class="col-sm-6">
+          <blockquote class="blockquote">
+            <p class="mb-0"><%= review.content[0..75] %>...</p>
+            <footer class="blockquote-footer"><%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating} - #{review.city.name}", review_path(review) %></footer>
+          </blockquote></div>
+      <% end %>
 
   </div>
 </div>

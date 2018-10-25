@@ -8,10 +8,10 @@
         <div class="col-sm-3"><p><%=link_to city.name, city_path(city)%><br></div>
       <% end %>
     <% else %>
-      <%= form_tag cities_path, method: :get do %>
+        <p><%= form_tag cities_path, method: :get do %>
         <%= label_tag "First, select a Country" %>
         <%= select_tag :country, options_from_collection_for_select(@countries, "id", "name") %>
-        <%= submit_tag "Select this country" %>
+        <%= submit_tag "Select this country", class: "btn btn-info" %></p>
       <% end %>
   <% end %>
 

@@ -1,8 +1,17 @@
 <h1>Login Page</h1>
 
-<% if flash[:error] %>
-  <%= flash[:error] %>
-<% end %>
+<div class="form-group has-danger">
+
+    <% if flash[:error] %>
+      <label class="form-control-label" for="inputDanger1"></label>
+      <input type="text" value="There were errors with your request:" class="form-control is-invalid alert-danger" id="inputInvalid">
+      <div class="invalid-feedback">
+
+      <%= flash[:error] %>
+    <% end %>
+
+  </div>
+</div>
 
 <%= form_tag sessions_path do %>
   <%= label_tag :email %>

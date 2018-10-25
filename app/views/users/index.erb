@@ -4,8 +4,8 @@
     <%= form_tag("/search", method: "get") do %>
       <%= label_tag(:user_name, "Search by User's Name:") %>
       <%= text_field_tag(:user_name) %>
-      <%= submit_tag("Search") %>
-    <% end %>
+      <%= submit_tag("Search",class: "btn btn-info") %>
+    <% end %><br>
   <div class="row">
     <% @users.each do |user| %>
       <div class="col-sm-3"><p><%= link_to user.full_name, user_path(user) %></p></div>
