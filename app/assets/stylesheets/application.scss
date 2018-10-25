@@ -13,12 +13,11 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "main";
+ @import 'sessions';
+
  *= require_tree .
  welcome_pg:app/assets/stylesheets/application.css
  *= require_self
  *= require_tree .
  */
-
- @import "main";
- @import "bootstrap";
- @import 'sessions';
