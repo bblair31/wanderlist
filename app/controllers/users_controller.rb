@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       session[:user_id] = @user.id
+      @user.photos << Photo.new(url: 'https://picsum.photos/100/100/?image=101', user_id: @user.id)
       redirect_to user_path(@user)
     else
       flash[:error] = @user.errors.full_messages

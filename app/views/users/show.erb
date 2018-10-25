@@ -1,6 +1,13 @@
 <h1><%= @user.full_name %>'s Profile</h1>
 
-<p><%= mail_to @user.email, "Contact #{@user.first_name}" %></p>
+<%=image_tag(@user.my_photo_url)%>
+<% if @user.first_photo.user_id == current_user.id %>
+  <%= button_to "Edit My Profile Picture", edit_photo_path(@user.first_photo.id), method: :get %>
+<% end %>
+
+<% if @user != current_user %>
+  <p><%= button_to "WanderMessage #{@user.first_name}", conversations_path, method: :get %></p>
+<% end %>
 
 <% if @user.reviews.size != 0 %>
   <p>Total Reviews Written: <%= @user.user_review_count %></p>

@@ -1,4 +1,5 @@
 require 'faker'
+
 # city_size = ["small", "medium", "large"]
 
 # CS.countries.each do |c_code, name|
@@ -26,17 +27,47 @@ ratings = (1..5).to_a
 years = (2015..2018).to_a
 months = (1..12).to_a
 days = (1..28).to_a
+# Review.delete_all
+# puts "Deleted all old reviews"
+#  10.times do
+# 20.times do
+#   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
+#    Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
+#
+# ### NY, Kuala Lumpur, Montreal, Beijing, Moscow, Copenhagen, Capetown
+# city_ids = [68853, 50899, 9158, 11074, 57516, 21607, 73176]
+# user_id = 1
+# ratings = (1..5).to_a
+# years = (2015..2018).to_a
+# months = (1..12).to_a
+# days = (1..28).to_a
+#
+# Review.delete_all
+# puts "Deleted all old reviews"
+#
+# 20.times do
+#   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
+#
+#   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
+#
+#   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
+#
+#   user_id += 1
+# end
 
-Review.delete_all
-puts "Deleted all old reviews"
+Photo.delete_all
+counter = 1
+User.all.count.times do
+  user = User.find_by(id: counter)
 
-20.times do
-  Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
-
-  Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
-
-  Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
-
-  user_id += 1
+  if user != nil
+    photo_num = counter + 106
+    url = 'https://picsum.photos/100/100/?image='+photo_num.to_s
+    Photo.create(url: url, user_id: user.id )
+    counter +=1
+  else
+    counter +=1
+  end
 end
+
 puts "DONE SEEDING"
