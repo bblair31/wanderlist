@@ -71,3 +71,7 @@ gem 'bcrypt'
 
 gem 'rspec-rails'
 gem 'rails-controller-testing'
+
+gem 'bootstrap'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
