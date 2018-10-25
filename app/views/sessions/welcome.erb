@@ -1,3 +1,7 @@
+<div class="">
+
+</div>
+
 <h1>WELCOME TO WANDERLIST</h1>
 
 <% if flash[:logout] %>
@@ -6,3 +10,5 @@
 
 <%= button_to "LOGIN", login_path, method: :get %>
 <%= button_to "SIGN UP", new_user_path, method: :get %>
+
+<%= render partial: 'shared/background' %>

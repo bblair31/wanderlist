@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def welcome
-    render :layout => 'welcome'
+    render partial: 'shared/background'
   end
 
 end ## End SessionsController
