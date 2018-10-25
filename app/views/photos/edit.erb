@@ -1,0 +1,8 @@
+<h1>Edit My Profile Photo</h1>
+
+<h2>Submit URL for New Photo</h2>
+<%= form_for @photo do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= f.submit %>
+<% end %>

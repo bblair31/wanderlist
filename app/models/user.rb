@@ -49,4 +49,8 @@ class User < ApplicationRecord
     my_photos.first.to_s
   end
 
+  def first_photo
+    @photo = self.photos.last
+  end
+
 end ### End of User Class
