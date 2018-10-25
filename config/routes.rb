@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get '/', to: 'sessions#welcome', as: 'welcome'
   get '/analytic', to: 'countries#analytic', as: 'analytic'
-
   get '/search', to: 'users#index'
 
   resources :conversations, only: [:index, :create] do
