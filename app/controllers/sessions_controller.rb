@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def welcome
+    render :layout => 'welcome'
   end
 
 end ## End SessionsController
