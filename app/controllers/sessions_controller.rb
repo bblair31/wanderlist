@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def welcome
+    render partial: 'shared/background'
   end
 
 end ## End SessionsController
