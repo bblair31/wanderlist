@@ -2,42 +2,58 @@
   <div class="container text-center">
     <h1><%= @user.full_name %></h1>
     <p><%=image_tag(@user.my_photo_url, class: 'rounded-circle')%></p>
+      <div class="container user_show_buttons">
+        <div class="row">
+          <div class="col-sm">
+            <% if @user.first_photo.user_id == current_user.id %>
+            <%= button_to "Edit My Profile Picture", edit_photo_path(@user.first_photo.id), method: :get %>
+            <% end %>
+          </div>
 
-    <% if @user.first_photo.user_id == current_user.id %>
-      <%= button_to "Edit My Profile Picture", edit_photo_path(@user.first_photo.id), method: :get %>
+            <% if @user == current_user %>
+            <div class="col-sm">
+            <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+          </div>
+          <div class="col-sm">
+            <%= button_to "Delete User", user_path(@user), method: :delete, data: {confirm: "Are you sure you want delete your account?"} %>
+          </div>
+            <% end %>
+
+        </div>
+      </div>
+
+    <% if @user != current_user %>
+    <p><%= button_to "WanderMessage #{@user.first_name}", conversations_path, method: :get %></p>
+    <% end %>
+
+    <% if @user.reviews.size != 0 %>
+    <p>Total Reviews Written: <%= @user.user_review_count %></p>
+    <p>My favorite destination is <%= @user.favorite_city[0] %> and I've visited it <%= @user.favorite_city[1] %> times. </p>
+    <p>A destination I'd rather not visit again is <%= @user.least_favorite_city[0] %>.</p>
+    <% else %>
+    <p><%= @user.first_name %> has not reviewed any destinations yet.</p>
     <% end %>
   </div>
 </div>
 
+<div class="container">
+  <div class="row">
 
-<% if @user != current_user %>
-  <p><%= button_to "WanderMessage #{@user.first_name}", conversations_path, method: :get %></p>
-<% end %>
+    <div class="col-sm">
+      <h3>Cities Visited</h3>
+      <ul class="list-group">
+        <% @user.cities_reviewed.uniq.each do |city| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><%=link_to city.name, city_path(city) %></li>
+        <% end %>
+      </ul>
+    </div>
 
-<% if @user.reviews.size != 0 %>
-  <p>Total Reviews Written: <%= @user.user_review_count %></p>
-  <p>My favorite destination is <%= @user.favorite_city[0] %> and I've visited it <%= @user.favorite_city[1] %> times. </p>
-  <p>A destination I'd rather not visit again is <%= @user.least_favorite_city[0] %>.</p>
-
-
-  <h3>Cities Visited</h3>
-  <ul>
-    <% @user.cities_reviewed.uniq.each do |city| %>
-      <li><%=link_to city.name, city_path(city) %></li>
-    <% end %>
-  </ul>
-
-  <h3>User's Reviews</h3>
-  <% @user.reviews.each do |rev| %>
-    <p><%= link_to "Review of #{rev.city.name} - Rating: #{rev.rating}", review_path(rev) %></p>
-    <p><%= rev.content[0..50] %>...</p>
-  <% end %>
-
-<% else %>
-  <p><%= @user.first_name %> has not reviewed any destinations yet.</p>
-<% end %>
-
-<% if @user == current_user %>
-  <%= button_to "Edit User", edit_user_path(@user), method: :get %>
-  <%= button_to "Delete User", user_path(@user), method: :delete, data: {confirm: "Are you sure you want delete your account?"} %>
-<% end %>
+    <div class="col-sm">
+      <h3>User's Reviews</h3>
+      <% @user.reviews.each do |rev| %>
+      <p><%= link_to "Review of #{rev.city.name} - Rating: #{rev.rating}", review_path(rev) %></p>
+      <p><%= rev.content[0..50] %>...</p>
+      <% end %>
+    </div>
+  </div>
+</div>

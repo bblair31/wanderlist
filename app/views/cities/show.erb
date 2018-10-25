@@ -1,14 +1,28 @@
-<h1>SHOW THIS CITY</h1>
+<div class="jumbotron">
+  <div class="container-fluid text-center">
+    <h1><%= @city.name %></h1>
+    <p>Size/Population: <%= @city.size %></p>
+    <p>Country: <%= link_to @city.country.name, country_path(@city.country)%></p>
+    <p>Total Reviews: <%= @city.city_review_count%></p>
+    <p>Average Review Rating: <%= @city.average_rating %></p>
+    <p>Tours Available: <%= @city.tour_count %></p>
+  </div>
+</div>
 
-<h2>Name: <%= @city.name %></h2>
-<p>Size/Population: <%= @city.size %></p>
-<p>Country: <%= link_to @city.country.name, country_path(@city.country)%></p>
-<p>Total Reviews: <%= @city.city_review_count%></p>
-<p>Average Review Rating: <%= @city.average_rating %></p>
-<p>Tours Available: <%= @city.tour_count %></p>
+<div class="container-fluid bg-3 text-center">
+  <h3>LIST OF REVIEWS </h3>
+  <div class="row">
 
-<h3>LIST OF ALL REVIEWS </h3>
-  <% @city.reviews.each do |review| %>
-    <%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating}", review_path(review) %>
-    <p><%= review.content[0..50] %>...</p>
-  <% end %>
+    <% @city.reviews.each do |review| %>
+    <div class="col-sm-4">
+      <div class="card border-info mb-3" style="max-width: 20rem;">
+        <div class="card-header"><%= link_to "#{review.user.full_name}'s Review - Rating: #{review.rating}", review_path(review) %></div>
+        <div class="card-body">
+          <p class="card-text"><%= review.content[0..50] %>...</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
