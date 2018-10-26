@@ -1,25 +1,27 @@
-<h1>Login Page</h1>
+<div class="container-fluid bg-3 text-center">
 
-<div class="form-group has-danger">
+  <h1>Login Page</h1>
 
-    <% if flash[:error] %>
-      <label class="form-control-label" for="inputDanger1"></label>
-      <input type="text" value="There were errors with your request:" class="form-control is-invalid alert-danger" id="inputInvalid">
-      <div class="invalid-feedback">
-
-      <%= flash[:error] %>
-    <% end %>
-
+  <div class="form-group has-danger text-center">
+      <% if flash[:error] %>
+        <input type="text" value="There were errors with your request:" class="form-control is-invalid alert-danger" id="inputInvalid">
+        <div class="invalid-feedback">
+        <%= flash[:error] %>
+      <% end %>
+        </div>
   </div>
+
+  <div class="form-group text-center">
+    <%= form_tag sessions_path do %>
+    <p>
+    <%= label_tag :email %>
+    <%= email_field_tag :email, nil, class: 'form-control', style: 'width: 30%; margin:0px auto; display:block;' %></p>
+    <p><%= label_tag :password %> <%= password_field_tag :password, nil, class: 'form-control', style: 'width: 30%; margin:0px auto; display:block;' %></p>
+    <%= submit_tag "Log in", class: "btn btn-md btn-success" %>
+    <% end %>
+  </div>
+
+  <h2 class="text-center">Not Registered yet?</h2>
+  <%= button_to "Register", new_user_path, method: :get, class: "btn btn-md btn-success", style: "margin:0px auto; display:block;" %>
+
 </div>
-
-<%= form_tag sessions_path do %>
-  <%= label_tag :email %>
-  <%= email_field_tag :email %><br>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br>
-  <%= submit_tag "Log in" %>
-<% end %>
-
-<h2>Not Registered yet?</h2>
-<%= button_to "Register", new_user_path, method: :get %>

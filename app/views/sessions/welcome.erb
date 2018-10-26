@@ -1,10 +1,9 @@
 <div class="welcome_body">
-  <div class="container text-center">
+  <div class="container-fluid text-center">
   <% if flash[:logout] %>
-  <%= flash[:logout] %>
+  <h4><%= flash[:logout] %></h4>
   <% end %>
 </div>
-  <%= render partial: 'shared/background' %>
 
 <% if logged_in? == false %>
 <div class="container button_style1">
@@ -13,7 +12,12 @@
   <div class="container button_style2">
     <%= button_to "SIGN UP", new_user_path, method: :get, class: "btn btn-info btn-lg" %>
   </div>
-    <% end %>
+  <% else %>
+    <div class="container-fluid text-center">
+      <h4><%= @user.full_name %> is currently logged in.</h4>
+    </div>
+  <% end %>
 
+  <%= render partial: 'shared/background' %>
 
 </div>
