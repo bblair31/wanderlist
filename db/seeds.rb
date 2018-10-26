@@ -15,12 +15,14 @@ CS.countries.each do |c_code, name|
 end
 puts "Done seeding Countries and Cities"
 
+
 User.delete_all
 30.times do
   pass = Faker::Internet.password
   User.create(first_name: Faker::Name.first_name , last_name: Faker::Name.last_name, email: Faker::Internet.free_email , password: pass, password_confirmation: pass )
 end
 puts "Done seeding users."
+
 
 reviews = ["Frankly, this city is pretty much an over hyped total joke that during a very recent visit was just as bad as I recalled from the last time I had been there about 20 years earlier",
   "Everywhere you go, it stinks to the high heavens like many other 3rd World cities I have been to in Asia, Africa and South America-it just hits you around almost every corner.",
@@ -34,13 +36,6 @@ reviews = ["Frankly, this city is pretty much an over hyped total joke that duri
   "Most of my money spent here was in foot care products from Duane Reed. Wear the most comfortable shoes ever or your feet will pay the price.",
   "So cold this time of year. Would not recommend traveling here during the winter"]
 
-### NY, Kuala Lumpur, Montreal, Beijing, Moscow, Copenhagen, Capetown
-city_ids = [68853, 50899, 9158, 11074, 57516, 21607, 73176]
-user_id = 1
-ratings = (1..5).to_a
-years = (2015..2018).to_a
-months = (1..12).to_a
-days = (1..28).to_a
 
 ### NY, Kuala Lumpur, Montreal, Beijing, Moscow, Copenhagen, Capetown
 city_ids = [68853, 50899, 9158, 11074, 57516, 21607, 73176]
@@ -53,7 +48,7 @@ days = (1..28).to_a
 Review.delete_all
 puts "Deleted all old reviews"
 
-20.times do
+50.times do
   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
 
   Review.create(rating: ratings.sample, content: reviews.sample, date_visited: "#{years.sample}-#{months.sample}-#{days.sample}", user_id: user_id, city_id: city_ids.sample)
@@ -69,7 +64,7 @@ User.all.count.times do
   user = User.find_by(id: counter)
 
   if user != nil
-    photo_num = counter + 106
+    photo_num = counter + 506
     url = 'https://picsum.photos/100/100/?image='+photo_num.to_s
     Photo.create(url: url, user_id: user.id )
     counter +=1
