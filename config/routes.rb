@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create', as: "sessions"
   delete '/logout',  to: 'sessions#destroy'
   get '/', to: 'sessions#welcome', as: 'welcome'
+  get '/about', to: 'sessions#about', as: 'about'
   get '/analytic', to: 'countries#analytic', as: 'analytic'
   get '/search', to: 'users#index'
   get 'messages/index'
