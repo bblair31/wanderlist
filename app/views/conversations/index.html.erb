@@ -1,23 +1,43 @@
-<h1>Inbox</h1>
+<div class="container">
+  <h3 class=" text-center">Inbox</h3>
 
-<h2>Your Current Conversations:</h2>
-<ul>
-  <% @conversations.each do |conversation| %>
-   <li>
-     <%= link_to conversation.recipient(current_user).full_name, conversation_messages_path(conversation) %>
-     <% if !conversation.unread_message_count(current_user).zero? %>
-       (<%= conversation.unread_message_count(current_user) %>)
-     <% end %>
-   </li>
- <% end %>
-</ul>
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h4>Recent</h4>
+              </div>
+            </div>
 
 
-<h2>Start a New Conversation with another User:</h2>
-<ul>
-  <% @users.each do |user| %>
-    <% if  %>
-      <li><%= link_to user.full_name, conversations_path(sender_id: current_user.id, receiver_id: user.id), method: :post %></li>
+            <div class="inbox_chat">
+                  <% @conversations.each do |conversation| %>
+                  <div class="chat_list">
+                    <div class="chat_people">
+                      <div class="chat_img"> <%=image_tag(conversation.conversation_user.my_photo_url, class: 'rounded-circle')%></div>
+                      <div class="chat_ib">
+                      <h5><%= link_to conversation.recipient(current_user).full_name, conversation_messages_path(conversation)%><span class="chat_date">
+                        <% if conversation.messages.last != nil %>
+                          <%= conversation.messages.last.message_time %></span></h5>
+                          <p><%= conversation.messages.last.body %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <% end %>
+            </div>
+          </div><br>
+
+  </div>
+</div>
+
+<div class="inbox_chat">
+  <div class="text-center">
+    <h3>Start a New Conversation with another User:</h3>
+    <div class="row">
+
+    <% @users.each do |user| %>
+         <div class="col-sm-3"><%= link_to user.full_name, conversations_path(sender_id: current_user.id, receiver_id: user.id), method: :post %></div>
     <% end %>
-  <% end %>
-</ul>
+    </div>
+  </div>
+</div>

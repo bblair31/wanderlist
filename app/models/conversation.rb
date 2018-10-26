@@ -26,4 +26,8 @@ class Conversation < ApplicationRecord
    self.messages.where("user_id != ? AND read = ?", current_user.id, false).count
   end
 
+  def conversation_user
+    @user = User.find(self.receiver_id)
+  end
+
 end ### End of Conversation Class
