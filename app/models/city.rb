@@ -36,7 +36,11 @@ class City < ApplicationRecord
   def average_rating
     ratings_array = self.reviews.map {|r| r.rating}
     avg = ratings_array.reduce(:+).to_f / city_review_count
-    avg.round(1)
+    if avg > 0
+      avg.round(1)
+    else
+      "No reviews yet"
+    end
   end
 
 
