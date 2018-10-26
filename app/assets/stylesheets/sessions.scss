@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.button_style1 {
+  position: absolute;
+  top: 56%;
+  left: 56%;
+  z-index: 1;
+}
+.button_style2 {
+  position: absolute;
+  top: 38%;
+  left: 32%;
+  z-index: 1;
+}
+
+
 /*
 * By Jose Aguinaga
 * http://jjperezaguinaga.com
@@ -15,6 +29,7 @@
     #ffffff 0%,
     #f2efd9 100%
   );
+  position: relative;
 }
 
 @-webkit-keyframes rotate-right {

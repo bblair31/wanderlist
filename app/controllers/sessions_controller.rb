@@ -22,7 +22,10 @@ class SessionsController < ApplicationController
   end
 
   def welcome
-    # render partial: 'shared/background'
+    @user = User.find_by(id: current_user)
+  end
+
+  def about
   end
 
 end ## End SessionsController

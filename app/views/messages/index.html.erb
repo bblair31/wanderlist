@@ -1,20 +1,47 @@
-<h2>Your Conversation with <%= @conversation.recipient(current_user).full_name %></h2>
+<div class="message_container">
+<br><h3 class="text-center">Messaging with <%= link_to @conversation.recipient(current_user).first_name, user_path(@conversation.recipient(current_user)) %> </h3>
+<div class="messaging">
+  <div class="mesgs">
+    <div class="msg_history">
 
-<ul>
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <li>
-        <h4><%=image_tag(message.user.my_photo_url, :size => "20x20") %> <%= message.user.full_name %> - <%= message.message_time %></h4>
-        <p><%= message.body %></p>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+      <% @messages.each do |message| %>
+        <% if message.body %>
+          <% if message.user_id != current_user.id %>
 
-<%= form_for [@conversation, @message] do |f| %>
-  <div class="field">
-    <%= f.text_area :body, placeholder: "Your message" %>
+              <div class="incoming_msg">
+                <div class="incoming_msg_img"><%=image_tag(message.user.my_photo_url, class: 'rounded-circle left') %></div>
+                <div class="received_msg">
+                  <div class="received_withd_msg">
+                    <p><%= message.body %></p>
+                    <span class="time_date"><%= message.message_time %></span></div>
+                </div>
+              </div>
+
+
+
+            <% else %>
+              <div class="outgoing_msg">
+                <div class="sent_msg">
+                  <p><%= message.body %></p>
+                  <span class="time_date"><%= message.message_time %></span></div>
+              </div>
+
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+    <div class="type_msg">
+      <div class="input_msg_write">
+        <%= form_for [@conversation, @message] do |f| %>
+          <%= f.text_field :body, placeholder: "Type a message", class: "write_msg", style: 'width:100%;'%>  </div>
+        <div class="input_msg_button">
+          <%= f.submit "Send", class: "btn btn-info" %>
+        <% end %></div>
+    </div>
+
   </div>
-
-  <%= f.submit "Send" %>
-<% end %>
+  </div>
+</div>
