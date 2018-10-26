@@ -3,6 +3,7 @@ require 'faker'
 
 Country.delete_all
 City.delete_all
+puts "deleted destinations"
 city_size = ["small", "medium", "large"]
 
 CS.countries.each do |c_code, name|
