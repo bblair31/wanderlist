@@ -75,3 +75,4 @@ gem 'rails-controller-testing'
 gem 'bootstrap'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem "rack", ">= 2.0.6"
