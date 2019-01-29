@@ -3,6 +3,7 @@
 
 Social media application centered around shared travel experiences, recommendations, and messaging
 
+[Demo Video](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 
 User Stories:
  - A user has an account with editable profile information
