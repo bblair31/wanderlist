@@ -73,7 +73,7 @@ gem 'rspec-rails'
 gem 'rails-controller-testing'
 
 gem 'bootstrap'
-gem 'bootstrap-sass'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'autoprefixer-rails'
 gem "rack", ">= 2.0.6"
 gem "loofah", ">= 2.2.3"
