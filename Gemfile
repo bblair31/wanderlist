@@ -35,7 +35,7 @@ gem 'bootsnap', require: false
 gem 'jbuilder'
 
 group :development, :test do
-  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
+  gem 'debug', platforms: %i[mri mingw x64_mingw], require: 'debug/prelude'
   gem 'rspec-rails', '~> 7.0'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'rubocop', '~> 1.69', require: false
@@ -58,4 +58,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'tzinfo-data', platforms: %i[mingw x64_mingw mswin jruby]
