@@ -1,36 +1,41 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-
 RSpec.describe User, type: :model do
-
-  let(:valid_attributes) do
-    {
-      first_name: "Asafaa",
-      last_name: "Daevidoov",
-      email: "asafD12345@hotmail.com",
-      password: "password123",
-      password_confirmation: "password123"
-    }
+  describe 'associations' do
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
+    it { is_expected.to have_many(:cities).through(:reviews) }
+    it { is_expected.to have_many(:photos).dependent(:destroy) }
+    it { is_expected.to have_many(:conversations).dependent(:destroy) }
   end
 
-  let(:password_not_matching_confirmation) { valid_attributes.merge(password_confirmation: "password1234") }
-  let(:password_too_short) { valid_attributes.merge(password: "1234") }
-  let(:missing_email) { valid_attributes.except(:email) }
+  describe 'validations' do
+    subject { build(:user) }
 
-  it "is valid when expected" do
-    expect(User.new(valid_attributes)).to be_valid
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email) }
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to validate_length_of(:password).is_at_least(8) }
   end
 
-  it "is invalid when password_confirmation and password do not match" do
-    expect(User.new(password_not_matching_confirmation)).to be_invalid
+  describe '#full_name' do
+    it 'returns the full name' do
+      user = build(:user, first_name: 'John', last_name: 'Doe')
+      expect(user.full_name).to eq('John Doe')
+    end
   end
 
-  it "is invalid when password is too short" do
-    expect(User.new(password_too_short)).to be_invalid
-  end
+  describe '#profile_photo_url' do
+    it 'returns the first photo URL' do
+      user = create(:user, :with_photo)
+      expect(user.profile_photo_url).to be_present
+    end
 
-  it "is invalid without email" do
-    expect(User.new(missing_email)).to be_invalid
+    it 'returns nil when no photos exist' do
+      user = create(:user)
+      expect(user.profile_photo_url).to be_nil
+    end
   end
-
 end

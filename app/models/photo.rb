@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
 class Photo < ApplicationRecord
   belongs_to :user
-end ### End of Photo Class
+
+  validates :url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]) }
+end

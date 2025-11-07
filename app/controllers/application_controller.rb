@@ -1,20 +1,28 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-  helper_method :logged_in?
-  helper_method :current_user
+  include Pagy::Backend
+
+  helper_method :logged_in?, :current_user
   before_action :authorized
 
+  private
+
   def current_user
-    if session[:user_id]
-      @user = User.find_by(id: session[:user_id])
-    end
-  end #end current_user method
+    return unless session[:user_id]
+
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
 
   def logged_in?
-    !!current_user
+    current_user.present?
   end
 
   def authorized
-    redirect_to login_path unless logged_in?
-  end
+    return if logged_in?
 
-end ### End of ApplicationController
+    flash[:alert] = 'You must be logged in to access this page.'
+    redirect_to login_path
+  end
+end
+
