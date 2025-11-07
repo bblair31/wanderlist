@@ -1,72 +1,124 @@
-
 # Wanderlist 🧳✈️🚞🚙
 
-Social media application centered around shared travel experiences, recommendations, and messaging
+![CI Status](https://github.com/bblair31/wanderlist/workflows/CI/badge.svg)
+[![Ruby Version](https://img.shields.io/badge/ruby-3.3.6-red.svg)](https://www.ruby-lang.org/)
+[![Rails Version](https://img.shields.io/badge/rails-7.2-red.svg)](https://rubyonrails.org/)
 
-[Demo Video](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+A modern social media application centered around shared travel experiences, recommendations, and messaging built with Rails 7.2, Hotwire, and Bootstrap 5.
 
-User Stories:
- - A user has an account with editable profile information
- - A user can view all of their past reviews and the cities they have traveled to
- - A user can browse other users' profiles
- - A user can create, read, edit, delete reviews of cities.
- - A user can browse through all cities' reviews in the world and filter by country
- - A user can message other users about shared experiences and travel recommendations
+## Features
 
+- **User Authentication** - Secure user accounts with editable profile information
+- **Travel Reviews** - Create, read, edit, and delete reviews of cities worldwide
+- **Social Features** - Browse other users' profiles and their travel experiences
+- **Messaging** - Direct messaging between users about shared travel experiences
+- **Advanced Search** - Filter and search reviews by country and city
+- **Modern UI** - Responsive design with Bootstrap 5 and Hotwire/Turbo
+
+## Tech Stack
+
+- **Ruby** 3.3.6
+- **Rails** 7.2.2
+- **Database** SQLite3 (development/test)
+- **Frontend**
+  - Hotwire (Turbo + Stimulus)
+  - Bootstrap 5.3
+  - Importmap for JavaScript
+- **Testing**
+  - RSpec
+  - FactoryBot
+  - Shoulda Matchers
+  - SimpleCov (code coverage)
+- **Code Quality**
+  - RuboCop (Ruby linter)
+  - Bundle Audit (security)
+- **CI/CD** GitHub Actions
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Prerequisites
 
-### Installing
+- Ruby 3.3.6
+- Bundler 2.x
+- SQLite3
 
-1. Fork and Clone this repository
+### Installation
 
-2. Install all required gems
- 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/bblair31/wanderlist.git
+   cd wanderlist
+   ```
+
+2. **Install dependencies**
+   ```bash
+   bundle install
+   ```
+
+3. **Setup the database**
+   ```bash
+   rails db:create
+   rails db:migrate
+   rails db:seed
+   ```
+
+4. **Start the development server**
+   ```bash
+   rails server
+   ```
+
+5. **Visit the application**
+
+   Open your browser and navigate to `http://localhost:3000`
+
+### Running Tests
+
+```bash
+# Run the full test suite
+bundle exec rspec
+
+# Run RuboCop linter
+bundle exec rubocop
+
+# Check for security vulnerabilities
+bundle exec bundle-audit check --update
 ```
-bundle install
-```
-  * *NOTE*: If you get an error message about needing to install Bundler, from the command line run `gem install bundler`
-  
-3. Created new PostgreSQL development database
 
-```
-rails db:create
-```
+## Development
 
-4. Run all database migrations and establish schema
+### Code Quality
 
-```
-rails db:migrate
-```
+This project follows modern Rails best practices and enforces code quality through:
 
-5. Seed the database with given seed data from seeds.rb
+- **RuboCop** - Automated code style checking
+- **RSpec** - Comprehensive test coverage
+- **GitHub Actions** - Continuous integration on every push
 
-```
-rails db:seed
-```
+### Key Improvements (2025)
 
-6. Start the Rails Server
+This codebase has been modernized with:
 
-```
-rails start
-```
-
-7. Check to see if browser can communicate with the database
-
-  * Open your default browser and navigate to localhost:3000 (or whatever address is listed in the command line at 'Listening on tcp:'
-
-
-__Ctrl + c will stop the server when you are done testing
+- ✅ Upgraded from Rails 5.2 → 7.2
+- ✅ Upgraded from Ruby 2.3 → 3.3.6
+- ✅ Migrated from CoffeeScript to modern JavaScript
+- ✅ Added Hotwire (Turbo + Stimulus) for reactive UI
+- ✅ Upgraded Bootstrap 4 → Bootstrap 5
+- ✅ Refactored models with scopes and modern patterns
+- ✅ Improved controllers with better error handling
+- ✅ Added pagination with Pagy
+- ✅ Comprehensive test suite with RSpec
+- ✅ CI/CD pipeline with GitHub Actions
+- ✅ Security improvements and SQL injection fixes
 
 ## Built With
 
-* [Ruby on Rails](https://rubyonrails.org/) - Full stack framework
-* [SQLite3](https://www.sqlite.org/index.html) - SQL database engine
-* [Faker Gem](https://github.com/stympy/faker) - Factory for generating seed data
-* [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/) - Open source toolkit for developing with HTML, CSS, and JS
-* [City-State Gem](https://github.com/loureirorg/city-state) - Gem for populating database with all cities and countries
+* [Ruby on Rails 7.2](https://rubyonrails.org/) - Web framework
+* [Hotwire](https://hotwired.dev/) - Modern frontend framework
+* [Bootstrap 5](https://getbootstrap.com/) - UI framework
+* [SQLite3](https://www.sqlite.org/) - Database
+* [RSpec](https://rspec.info/) - Testing framework
+* [Stimulus](https://stimulus.hotwired.dev/) - JavaScript framework
+* [Turbo](https://turbo.hotwired.dev/) - SPA-like page acceleration
 
 ## Contributors
 

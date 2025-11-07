@@ -1,62 +1,64 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create]
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorized, only: %i[new create]
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    if !!params[:user_name]
-      @users = User.where("first_name like ?", "%#{params[:user_name]}%").or(User.where("last_name like ?", "%#{params[:user_name]}%"))
-    else
-      @users = User.all
-    end
+    @pagy, @users = pagy(User.search_by_name(params[:user_name]), limit: 20)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @user = User.new
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.valid?
-      session[:user_id] = @user.id
-      @user.photos << Photo.new(url: 'https://picsum.photos/100/100/?image=101', user_id: @user.id)
-      redirect_to user_path(@user)
-    else
-      flash[:error] = @user.errors.full_messages
-      redirect_to new_user_path
-    end
-  end #end create method
+    @user = User.new(user_params)
 
-  def edit
+    if @user.save
+      session[:user_id] = @user.id
+      @user.photos.create(url: 'https://picsum.photos/100/100/?image=101')
+      redirect_to user_path(@user), notice: 'Welcome to Wanderlist!'
+    else
+      flash.now[:alert] = @user.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
+    end
   end
+
+  def edit; end
 
   def update
-    @user.update(user_params)
-    if @user.valid?
-      redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'Profile updated successfully.'
     else
-      flash[:error] = @user.errors.full_messages
-      redirect_to edit_user_path
-    end
-  end #end update method
-
-  def destroy
-    if @user == current_user
-    @user.destroy
-    redirect_to users_path
+      flash.now[:alert] = @user.errors.full_messages.to_sentence
+      render :edit, status: :unprocessable_entity
     end
   end
 
-private
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Account deleted successfully.'
+  end
+
+  private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
-  def find_user
+  def set_user
     @user = User.find(params[:id])
   end
 
-end ## End of UsersController
+  def authorize_user
+    return if @user == current_user
+
+    redirect_to root_path, alert: 'You are not authorized to perform this action.'
+  end
+end
+
